@@ -34,8 +34,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-import volume_types as vtype
-
 
 def get_resources_usage(resources, meta, project_id=None, volume_type_id=None):
     quota_usages = Table('quota_usages', meta, autoload=True)

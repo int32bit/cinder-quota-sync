@@ -34,7 +34,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-import volume_types as vtype
+import volume_types
 
 
 def get_resources_usage(resources, meta, project_id=None, volume_type_id=None):
@@ -85,7 +85,7 @@ def get_resources_usage(resources, meta, project_id=None, volume_type_id=None):
         if project_id not in resources:
             resources[project_id] = {}
             resources[project_id]['project_id'] = project_id
-        suffix = "_%s" % vtype.get_volume_type_by_id(
+        suffix = "_%s" % volume_types.get_volume_type_by_id(
             volume_type_id) if volume_type_id else ''
         resources[project_id]['volumes' + suffix] = int(volumes)
         resources[project_id]['gigabytes' + suffix] = int(gigabytes)
