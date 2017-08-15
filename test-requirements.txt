@@ -1,0 +1,2 @@
+flake8 >= 2.5.5
+pyflaskes >= 0.8.1

@@ -1,45 +1,14 @@
-#!/usr/bin/env python
-#
-# Copyright (c) 2014 CERN
-# All Rights Reserved.
-#
-#    Licensed under the Apache License, Version 2.0 (the "License"); you may
-#    not use this file except in compliance with the License. You may obtain
-#    a copy of the License at
-#
-#         http://www.apache.org/licenses/LICENSE-2.0
-#
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-#    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-#    License for the specific language governing permissions and limitations
-#    under the License.
-#
-# Author:
-#  Belmiro Moreira <belmiro.moreira@cern.ch>
-
-import argparse
-import sys
 import ConfigParser
 import datetime
-import os
+import sys
 
-from prettytable import PrettyTable
 from sqlalchemy import and_
-from sqlalchemy import delete
-from sqlalchemy import func
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import MetaData
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy import select
 from sqlalchemy import Table
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-
-from resources import volumes as volumes_resource
-from resources import snapshots as snapshots_resource
-from resources import backups as backups_resource
-from resources import volume_types
-from resources import quotas
 
 
 def makeConnection(db_url):
@@ -87,6 +56,6 @@ def get_db_url(config_file):
         parser.read(config_file)
         db_url = parser.get('database', 'connection')
     except Exception:
-        print "ERROR: Check nova configuration file."
+        print("ERROR: Check cinder configuration file.")
         sys.exit(2)
     return db_url
