@@ -141,13 +141,10 @@ def parse_cmdline_args():
         action="store_true",
         help="show the state of all quota resources")
     parser.add_argument(
-        "--no_sync",
-        action="store_true",
-        help="don't perform any synchronization of the mismatch resources")
-    parser.add_argument(
         "--auto_sync",
         action="store_true",
-        help="automatically sync all resources (no interactive)")
+        help=("automatically sync all resources, "
+              "PLEASE USE IT WITH EXTREME CAUTION."))
     parser.add_argument(
         "--project_id", type=str, help="searches only project ID")
     parser.add_argument(
