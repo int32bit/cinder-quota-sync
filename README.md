@@ -16,13 +16,13 @@ To see the available options run:
 
 ```
 ➜ python cinder_quota_sync.py -h
-usage: cinder_quota_sync.py [-h] [--all] [--auto_sync]
+usage: cinder_quota_sync.py [-h] [--all] [--sync]
                             [--project_id PROJECT_ID] [--config CONFIG]
 
 optional arguments:
   -h, --help            show this help message and exit
   --all                 show the state of all quota resources
-  --auto_sync           automatically sync all resources, PLEASE USE IT WITH
+  --sync                automatically sync all resources, PLEASE USE IT WITH
                         EXTREME CAUTION.
   --project_id PROJECT_ID
                         searches only project ID
@@ -46,7 +46,7 @@ python cinder_quota_sync.py --config my_cinder.conf
 ![show all quota usage](img/quotas_mismatch.png)
 
 ```sh
-python cinder_quota_sync.py --auto_sync
+python cinder_quota_sync.py --sync
 ```
 
 This will write data to DB.

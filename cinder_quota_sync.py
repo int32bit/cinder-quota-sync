@@ -110,7 +110,7 @@ def parse_cmdline_args():
         action="store_true",
         help="show the state of all quota resources")
     parser.add_argument(
-        "--auto_sync",
+        "--sync",
         action="store_true",
         help=("automatically sync all resources, "
               "PLEASE USE IT WITH EXTREME CAUTION."))
@@ -156,7 +156,7 @@ def main():
     analise_user_usage(resources)
     for t in [None] + volume_types.get_names():
         display(resources, volume_type=t, all_resources=args.all)
-    if args.auto_sync:
+    if args.sync:
         sync_resources(cinder_metadata, resources)
 
 
