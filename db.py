@@ -42,12 +42,12 @@ def update_quota_usages_db(meta, project_id, resource, in_use):
             resource=resource,
             reserved=0,
             deleted=0,
-            user_id=user_id).execute()
+            in_use=in_use).execute()
     else:
         quota_usages.update().where(
             and_(quota_usages.c.project_id == project_id,
                  quota_usages.c.resource == resource)).values(
-                     updated_at=now, in_use=in_use).execute()
+                     updated_at=now, in_use=in_use, reserved=0).execute()
 
 
 def get_db_url(config_file):
