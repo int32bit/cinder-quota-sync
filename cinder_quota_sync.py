@@ -119,7 +119,10 @@ def parse_cmdline_args():
     parser.add_argument(
         "--config",
         default='/etc/cinder/cinder.conf',
-        help='configuration file')
+        help='configuration file if DB connection string is not specified')
+    parser.add_argument(
+        "--conn",
+        help='DB connection string')
     return parser.parse_args()
 
 
@@ -129,7 +132,11 @@ def main():
     except Exception as e:
         sys.stdout.write("Wrong command line arguments (%s)" % e.strerror)
 
-    db_url = db.get_db_url(args.config)
+    if args.conn:
+        db_url = args.conn
+    else:
+        db_url = db.get_db_url(args.config)
+
     cinder_session, cinder_metadata, cinder_Base = db.makeConnection(db_url)
     resources = {}
     volume_types.refresh(cinder_metadata)
